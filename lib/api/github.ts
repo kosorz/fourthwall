@@ -2,7 +2,7 @@
 
 import { BrowseDirection } from "../types/pagination"
 
-export async function fetchGithubRepositories({
+export async function getRepos({
   startCursor,
   endCursor,
   direction = BrowseDirection.Backward,
@@ -57,13 +57,68 @@ export async function fetchGithubRepositories({
     next: { revalidate: 3600 },
   }
 
-  const request = await fetch("https://api.github.com/graphql", options)
+  const response = await fetch("https://api.github.com/graphql", options)
 
-  const json = await request.json()
+  if (!response.ok) {
+    throw Error(`GraphQL request failed: ${response.statusText}`)
+  }
 
-  if (Array.isArray(json.errors) || !!json?.status) {
-    throw Error("fetch failed")
+  const json = await response.json()
+
+  if (json.errors) {
+    throw Error(`GraphQL request failed`)
   }
 
   return json
+}
+
+export async function getRepo({ id }: { id?: string | string[] | undefined }) {
+  if (!id) {
+    throw Error("Repository ID is required.")
+  }
+
+  const headers = {
+    "content-type": "application/json",
+    Authorization: `bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+  }
+
+  const query = `
+    query($id: ID!) {
+      node(id: $id) {
+        ... on Repository {
+          name
+          createdAt
+          stargazerCount
+          description
+          owner {
+            login
+          }
+          id
+        }
+      }
+    }
+  `
+
+  const body = JSON.stringify({
+    query,
+    variables: { id },
+  })
+
+  const response = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers,
+    body,
+  })
+
+  if (!response.ok) {
+    throw Error(`GraphQL request failed: ${response.statusText}`)
+  }
+
+  const { data, errors } = await response.json()
+
+  if (errors) {
+    throw Error(`GraphQL request failed`)
+  }
+
+  return data.node
 }

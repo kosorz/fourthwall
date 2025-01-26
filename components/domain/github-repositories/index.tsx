@@ -1,13 +1,14 @@
 import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table"
-import { cn } from "@/lib/functions/cn"
-import { EdgeNode } from "@/lib/types/github"
+import { Edge } from "@/lib/types/github"
 import numeral from "numeral"
 import { Headers } from "./headers"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { CircleOff } from "lucide-react"
+import Link from "next/link"
+import { cn } from "@/lib/functions/cn"
 
 type Props = {
-  edges: EdgeNode[]
+  edges: { node: Edge }[]
   q: string | string[]
 }
 
@@ -24,17 +25,24 @@ export async function GithubRepositoriesTable({ edges, q }: Props) {
     )
 
   return (
-    <Table className="min-h-[500px] border mb-4">
+    <Table className={cn(edges.length > 7 && "min-h-[500px]", `border mb-4`)}>
       <TableHeader>
         <Headers />
       </TableHeader>
       <TableBody>
         {edges.map(({ node }) => (
-          <TableRow key={`repository-${node.id}`}>
-            <TableCell>{node.owner.login}</TableCell>
-            <TableCell>{numeral(node.stargazerCount).format("0a")}</TableCell>
-            <TableCell>{new Date(node.createdAt).toLocaleDateString("pl-PL")}</TableCell>
-            <TableCell className="font-medium">{node.name}</TableCell>
+          <TableRow key={node.id} className="hover:bg-gray-100">
+            <TableCell className="max-sm:hidden">{node.owner.login}</TableCell>
+            <TableCell className="max-sm:hidden">{numeral(node.stargazerCount).format("0a")}</TableCell>
+            <TableCell className="max-sm:hidden">{new Date(node.createdAt).toLocaleDateString("pl-PL")}</TableCell>
+            <TableCell className="font-medium">
+              <Link
+                className="h-full w-full block m-[-8px] p-[8px] max-sm:cursor-pointer md:pointer-events-none"
+                href={`/repository/${node.id}`}
+              >
+                {node.name}
+              </Link>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

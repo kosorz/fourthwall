@@ -1,20 +1,19 @@
 export type Response = {
   data: {
     search: {
-      edges: EdgeNode[]
+      edges: { node: Edge }[]
       pageInfo: PageInfo
     }
   }
 }
 
-export type EdgeNode = {
-  node: {
-    owner: { login: string }
-    id: number
-    stargazerCount: number
-    createdAt: string
-    name: string
-  }
+export type Edge = {
+  owner: { login: string }
+  id: number
+  stargazerCount: number
+  createdAt: string
+  description: string
+  name: string
 }
 
 export type PageInfo = {

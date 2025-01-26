@@ -14,18 +14,11 @@ const TableHeader = ({ className, ...props }: HTMLAttributes<HTMLTableSectionEle
 }
 
 const TableBody = ({ className, ...props }: HTMLAttributes<HTMLTableSectionElement>) => {
-  return (
-    <tbody className={cn("[&_tr:last-child]:border-0 [&_tr:nth-child(even)]:bg-muted/50 mb-5", className)} {...props} />
-  )
+  return <tbody className={cn("[&_tr:last-child]:border-0 mb-5", className)} {...props} />
 }
 
 const TableRow = ({ className, ...props }: HTMLAttributes<HTMLTableRowElement>) => {
-  return (
-    <tr
-      className={cn("border-b transition-colors data-[state=selected]:bg-muted hover:bg-blue-50", className)}
-      {...props}
-    />
-  )
+  return <tr className={cn("border-b transition-colors", className, "hover:bg-blue-50")} {...props} />
 }
 
 const TableHead = ({ className, ...props }: ThHTMLAttributes<HTMLTableCellElement>) => {

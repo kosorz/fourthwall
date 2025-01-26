@@ -11,7 +11,7 @@ type Props = {
 
 export function ProblemAlert({ title, description, Icon, reset }: Props) {
   return (
-    <Alert variant="destructive">
+    <Alert variant="destructive" className="mt-5">
       {Icon}
       <AlertTitle>{title}</AlertTitle>
       <AlertDescription>{description}</AlertDescription>

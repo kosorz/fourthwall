@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { TableHead, TableRow } from "@/components/ui/table"
+import { cn } from "@/lib/functions/cn"
 import { SortDirections } from "@/lib/types/github"
 import { useRouter, useSearchParams } from "next/navigation"
 
@@ -24,10 +25,10 @@ export function Headers() {
 
   return (
     <TableRow>
-      <TableHead>User</TableHead>
+      <TableHead className="max-sm:hidden">User</TableHead>
 
       <Button
-        className={buttonStyles}
+        className={cn(buttonStyles, "max-sm:hidden")}
         variant={"ghost"}
         asChild
         onClick={() => sortBy([SortDirections.StarsAsc, SortDirections.StarsDesc])}
@@ -35,7 +36,7 @@ export function Headers() {
         <TableHead>Stars</TableHead>
       </Button>
 
-      <TableHead>Created at</TableHead>
+      <TableHead className="max-sm:hidden">Created at</TableHead>
 
       <Button
         className={buttonStyles}
