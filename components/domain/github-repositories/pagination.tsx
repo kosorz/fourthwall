@@ -27,7 +27,7 @@ export function GithubRepositoriesPagination({ startCursor, endCursor, hasNextPa
   if (!hasNextPage && !hasPreviousPage) return
 
   return (
-    <Pagination className="mt-2">
+    <Pagination className={`mt-2`}>
       <PaginationContent className="grid grid-cols-2 justify-items-center">
         <PaginationItem>
           <PaginationPrevious

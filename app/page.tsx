@@ -14,7 +14,11 @@ export default async function Page({ searchParams }: Props) {
 
   return (
     <Suspense>
-      <section className="flex justify-center gap-4 items-center my-4" aria-label="Logos section">
+      <section
+        className="flex justify-center gap-4 items-center my-4 max-sm:sticky max-sm:top-0 
+              max-sm:w-full max-sm:bg-white max-sm:z-10 max-sm:py-3"
+        aria-label="Logos section"
+      >
         <Image priority alt="Fourthwall logo" width={200} height={50} src="/fourthwall.svg" />
         <span className="font-semibold">X</span>
         <Image priority alt="GitHub logo" width={50} height={50} src="/github.svg" />
