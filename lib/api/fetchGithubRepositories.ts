@@ -54,7 +54,7 @@ export async function fetchGithubRepositories({
     method: "POST",
     headers,
     body: JSON.stringify(requestBody),
-    next: { revalidate: 60 },
+    next: { revalidate: 3600 },
   }
 
   const request = await fetch("https://api.github.com/graphql", options)
