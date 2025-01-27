@@ -1,24 +1,24 @@
-import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table"
-import { Edge } from "@/lib/types/github"
+import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table/table"
+import { Repository } from "@/lib/types/github"
 import numeral from "numeral"
-import { Headers } from "./headers"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { CircleOff } from "lucide-react"
+import { Headers } from "./components/headers/headers"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert/alert"
+import { PiEmpty } from "react-icons/pi"
 import Link from "next/link"
-import { cn } from "@/lib/functions/cn"
+import { cn } from "@/lib/functions/cn/cn"
 
 type Props = {
-  edges: { node: Edge }[]
+  edges: { node: Repository }[]
   q: string | string[]
 }
 
-export async function GithubRepositoriesTable({ edges, q }: Props) {
+export function GithubRepositories({ edges, q }: Props) {
   if (!q) return
 
   if (edges.length === 0)
     return (
       <Alert>
-        <CircleOff width={16} height={16} />
+        <PiEmpty width={16} height={16} />
         <AlertTitle>Nothing found</AlertTitle>
         <AlertDescription>{q === "" ? `Please provide search phrase` : `No results found for ${q}`}</AlertDescription>
       </Alert>
@@ -49,4 +49,8 @@ export async function GithubRepositoriesTable({ edges, q }: Props) {
       <TableCaption>A list of matching repositories.</TableCaption>
     </Table>
   )
+}
+
+export default async function GithubRepositoriesAsync(props: Props) {
+  return GithubRepositories(props)
 }

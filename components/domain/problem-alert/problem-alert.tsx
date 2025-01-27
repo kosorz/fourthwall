@@ -1,6 +1,6 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert/alert"
+import { Button } from "@/components/ui/button/button"
 import { ReactNode } from "react"
-import { Button } from "@/components/ui/button"
 
 type Props = {
   title: string
@@ -15,7 +15,7 @@ export function ProblemAlert({ title, description, Icon, reset }: Props) {
       {Icon}
       <AlertTitle>{title}</AlertTitle>
       <AlertDescription>{description}</AlertDescription>
-      <Button className="mt-3 ml-6" size="lg" variant={"destructive"} onClick={() => reset()}>
+      <Button className="mt-3 ml-6" size="lg" variant={"destructive"} onClick={reset}>
         Try again
       </Button>
     </Alert>

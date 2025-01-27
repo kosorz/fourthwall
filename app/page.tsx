@@ -1,3 +1,3 @@
-export default async function Page() {
-  return null
-}
+import { DefaultScreen } from "@/screens/default"
+
+export default DefaultScreen

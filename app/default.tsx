@@ -1,3 +1,3 @@
-export default function Default() {
-  return "this is default"
-}
+import { DefaultScreen } from "@/screens/default"
+
+export default DefaultScreen

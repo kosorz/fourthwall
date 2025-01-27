@@ -1,9 +1,11 @@
-import { Skeleton } from "@/components/ui/skeleton"
+import { Skeleton } from "@/components/ui/skeleton/skeleton"
 import { ReactNode } from "react"
 
-export function GithubRepositoriesTableSkeleton({ children }: { children?: ReactNode | ReactNode[] }) {
+type Props = { children?: ReactNode | ReactNode[] }
+
+export function GithubRepositoriesTableSkeleton({ children }: Props) {
   return (
-    <main className="flex flex-col gap-1 min-h-[500px]">
+    <main aria-label="Results loading skeleton" className="flex flex-col gap-1 min-h-[500px]">
       {Array(11)
         .fill(null)
         .map((_, index) => (

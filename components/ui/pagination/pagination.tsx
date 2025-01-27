@@ -1,8 +1,8 @@
 import React, { ComponentProps } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { FaAngleRight, FaAngleLeft } from "react-icons/fa6"
 
-import { cn } from "@/lib/functions/cn"
-import { ButtonProps, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/functions/cn/cn"
+import { ButtonProps, buttonVariants } from "../button/button"
 
 const Pagination = ({ className, ...props }: ComponentProps<"nav">) => (
   <nav
@@ -51,7 +51,7 @@ const PaginationPrevious = ({ className, ...props }: ComponentProps<typeof Pagin
     className={cn("gap-1 pl-2.5 cursor-pointer", className)}
     {...props}
   >
-    <ChevronLeft className="h-4 w-4" />
+    <FaAngleLeft className="h-4 w-4" />
     <span>Previous</span>
   </PaginationLink>
 )
@@ -65,7 +65,7 @@ const PaginationNext = ({ className, ...props }: ComponentProps<typeof Paginatio
     {...props}
   >
     <span>Next</span>
-    <ChevronRight className="h-4 w-4" />
+    <FaAngleRight className="h-4 w-4" />
   </PaginationLink>
 )
 PaginationNext.displayName = "PaginationNext"

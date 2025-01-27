@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
-import { cn } from "@/lib/functions/cn"
+import { cn } from "@/lib/functions/cn/cn"
 
 const Table = ({ className, ...props }: HTMLAttributes<HTMLTableElement>) => {
   return (

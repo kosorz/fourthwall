@@ -1,4 +1,4 @@
-import { cn } from "@/lib/functions/cn"
+import { cn } from "@/lib/functions/cn/cn"
 import React, { HTMLAttributes } from "react"
 
 const Card = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
@@ -16,19 +16,9 @@ const CardTitle = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
 )
 CardTitle.displayName = "CardTitle"
 
-const CardDescription = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("text-sm text-muted-foreground", className)} {...props} />
-)
-CardDescription.displayName = "CardDescription"
-
 const CardContent = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
   <div className={cn("p-6 pt-0", className)} {...props} />
 )
 CardContent.displayName = "CardContent"
 
-const CardFooter = ({ className, ...props }: HTMLAttributes<HTMLDivElement>) => (
-  <div className={cn("flex items-center p-6 pt-0", className)} {...props} />
-)
-CardFooter.displayName = "CardFooter"
-
-export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+export { Card, CardHeader, CardTitle, CardContent }

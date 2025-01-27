@@ -1,9 +1,15 @@
 "use client"
-import { cn } from "@/lib/functions/cn"
-import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "../../ui/pagination"
+import { cn } from "@/lib/functions/cn/cn"
 import { useRouter, useSearchParams } from "next/navigation"
 import { PageInfo } from "@/lib/types/github"
 import { BrowseDirection } from "@/lib/types/pagination"
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination/pagination"
 
 type Props = PageInfo
 

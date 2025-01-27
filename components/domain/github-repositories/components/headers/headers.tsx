@@ -1,8 +1,8 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { TableHead, TableRow } from "@/components/ui/table"
-import { cn } from "@/lib/functions/cn"
+import { Button } from "@/components/ui/button/button"
+import { TableHead, TableRow } from "@/components/ui/table/table"
+import { cn } from "@/lib/functions/cn/cn"
 import { SortDirections } from "@/lib/types/github"
 import { useRouter, useSearchParams } from "next/navigation"
 

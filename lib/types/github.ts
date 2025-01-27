@@ -1,15 +1,15 @@
 export type Response = {
   data: {
     search: {
-      edges: { node: Edge }[]
+      edges: { node: Repository }[]
       pageInfo: PageInfo
     }
   }
 }
 
-export type Edge = {
+export type Repository = {
   owner: { login: string }
-  id: number
+  id: string
   stargazerCount: number
   createdAt: string
   description: string

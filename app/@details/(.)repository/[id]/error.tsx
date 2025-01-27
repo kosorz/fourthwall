@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button/button"
 import {
   Dialog,
   DialogContent,
@@ -8,10 +8,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog"
+} from "@/components/ui/dialog/dialog"
 
 type Props = {
-  error: Error & { digest?: string }
   reset: () => void
 }
 
