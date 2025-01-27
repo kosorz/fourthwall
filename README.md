@@ -21,6 +21,10 @@ In an effort to provide smooth mobile experience and avoid user being overwhelme
 - sorting limited to name
 - additional routes to show details of each repository
 
+## Future improvements
+
+- error (and activity? :D, I don't want you to feel) tracking
+
 ## Getting Started
 
 First, run the development server:
