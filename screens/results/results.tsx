@@ -1,7 +1,7 @@
 import { SearchParams } from "next/dist/server/request/search-params"
 import { Suspense } from "react"
 import { GithubRepositoriesPagination } from "@/components/domain/github-repositories-pagination/gitthub-repositories-pagination"
-import { getRepos } from "@/lib/api/github"
+import { getRepos } from "@/api/github"
 import { Response } from "@/lib/types/github"
 import GithubRepositoriesAsync, {
   GithubRepositories,

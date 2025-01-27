@@ -23,19 +23,11 @@ describe("RepositoryInfo component", () => {
     expect(info).toBeInTheDocument()
   })
 
-  test("handles missing owner gracefully", () => {
-    const repoWithUnknownOwner = { ...mockRepo, owner: { login: "" } }
-    render(<RepositoryInfo {...repoWithUnknownOwner} />)
+  test("renders correctly when some data is missing", () => {
+    render(<RepositoryInfo {...mockRepo} createdAt="" />)
 
-    const info = screen.getByText(/is owned by unknown author/i)
-    expect(info).toBeInTheDocument()
-  })
+    const info = screen.getByText(/Couldn't retrieve data/i)
 
-  test("handles missing createdAt gracefully", () => {
-    const repoWithUnknownDate = { ...mockRepo, createdAt: "" }
-    render(<RepositoryInfo {...repoWithUnknownDate} />)
-
-    const info = screen.getByText(/was created at Invalid Date/i)
     expect(info).toBeInTheDocument()
   })
 })

@@ -1,7 +1,7 @@
 import { RepositoryInfo } from "@/components/domain/repository-info/repository-info"
 import { Button } from "@/components/ui/button/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card/card"
-import { getRepo } from "@/lib/api/github"
+import { getRepo } from "@/api/github"
 import { Repository } from "@/lib/types/github"
 
 type Props = {
@@ -15,11 +15,11 @@ export async function RepositoryScreen({ params }: Props) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>{repository.name}</CardTitle>
+        <CardTitle>{repository?.name || "Not available"}</CardTitle>
       </CardHeader>
       <CardContent>
         <RepositoryInfo {...repository} />
-        <p>Description: {repository.description}</p>
+        <p>Description: {repository?.description || "Not available"}</p>
       </CardContent>
     </Card>
   )

@@ -1,6 +1,11 @@
 "use server"
 
-import { BrowseDirection } from "../types/pagination"
+import { BrowseDirection } from "../lib/types/pagination"
+
+const headers = {
+  "content-type": "application/json",
+  Authorization: `bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+}
 
 export async function getRepos({
   startCursor,
@@ -15,9 +20,8 @@ export async function getRepos({
   sort: string | string[] | undefined
   direction?: string | string[] | undefined
 }) {
-  const headers = {
-    "content-type": "application/json",
-    Authorization: `bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+  if (!q) {
+    throw Error("Search phrase is required.")
   }
 
   const requestBody = {
@@ -77,11 +81,6 @@ export async function getRepo({ id }: { id?: string | string[] | undefined }) {
     throw Error("Repository ID is required.")
   }
 
-  const headers = {
-    "content-type": "application/json",
-    Authorization: `bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-  }
-
   const query = `
     query($id: ID!) {
       node(id: $id) {
@@ -99,16 +98,19 @@ export async function getRepo({ id }: { id?: string | string[] | undefined }) {
     }
   `
 
-  const body = JSON.stringify({
+  const requestBody = {
     query,
     variables: { id },
-  })
+  }
 
-  const response = await fetch("https://api.github.com/graphql", {
+  const options = {
     method: "POST",
     headers,
-    body,
-  })
+    body: JSON.stringify(requestBody),
+    next: { revalidate: 3600 },
+  }
+
+  const response = await fetch("https://api.github.com/graphql", options)
 
   if (!response.ok) {
     throw Error(`GraphQL request failed: ${response.statusText}`)

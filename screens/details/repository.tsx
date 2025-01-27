@@ -1,6 +1,6 @@
 import { RepositoryInfo } from "@/components/domain/repository-info/repository-info"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog/dialog"
-import { getRepo } from "@/lib/api/github"
+import { getRepo } from "@/api/github"
 import { Repository } from "@/lib/types/github"
 
 type Props = {
@@ -15,13 +15,13 @@ export async function RepositoryScreen({ params }: Props) {
     <Dialog open>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{repository.name}</DialogTitle>
+          <DialogTitle>{repository?.name || "Not available"}</DialogTitle>
         </DialogHeader>
 
         <DialogDescription>
           <RepositoryInfo {...repository} />
         </DialogDescription>
-        <DialogDescription>Description: {repository.description}</DialogDescription>
+        <DialogDescription>Description: {repository?.description || "Not available"}</DialogDescription>
       </DialogContent>
     </Dialog>
   )
