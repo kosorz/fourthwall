@@ -33,9 +33,9 @@ export default function Layout({ results, children, details, search }: Props) {
         <main className="flex flex-col align-top p-4 sm:p-6 lg:p-8">
           <section className="flex justify-center my-4" aria-label="Logos section">
             <a className="flex gap-2 items-center" href="/">
-              <Image priority alt="Fourthwall logo" width={112} height={20} src="/fourthwall.svg" />
+              <Image alt="Fourthwall logo" width={112} height={20} src="/fourthwall.svg" />
               <span className="font-semibold">x</span>
-              <Image priority alt="GitHub logo" width={50} height={50} src="/github.svg" />
+              <Image alt="GitHub logo" width={50} height={50} src="/github.svg" />
             </a>
           </section>
           <section className="w-full max-w-3xl m-auto">
