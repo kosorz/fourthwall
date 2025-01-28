@@ -18,7 +18,9 @@ export async function RepositoryScreen({ params }: Props) {
         <CardTitle>{repository?.name || "Not available"}</CardTitle>
       </CardHeader>
       <CardContent>
-        <RepositoryInfo {...repository} />
+        <p>
+          <RepositoryInfo {...repository} />
+        </p>
         <p>Description: {repository?.description || "Not available"}</p>
       </CardContent>
     </Card>

@@ -1,17 +1,6 @@
 import { render } from "@testing-library/react"
 import { PageInfo, Repository } from "@/lib/types/github"
-import { BrowseDirection } from "@/lib/types/pagination"
 import { GithubRepositories } from "./github-repositories"
-
-const props = {
-  searchParams: Promise.resolve({
-    q: "test",
-    startCursor: "start-cursor",
-    endCursor: "end-cursor",
-    direction: BrowseDirection.Forward,
-    sort: "",
-  }),
-}
 
 const edges: { node: Repository }[] = Array.from({ length: 3 }, (_, index) => ({
   node: {
@@ -49,8 +38,11 @@ afterEach(() => {
 })
 
 jest.mock("next/navigation", () => ({
-  useRouter: jest.fn(),
   useSearchParams: jest.fn(),
+}))
+
+jest.mock("nextjs-toploader/app", () => ({
+  useRouter: jest.fn(),
 }))
 
 it("checks table", () => {

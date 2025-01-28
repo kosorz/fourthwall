@@ -36,10 +36,7 @@ export function GithubRepositories({ edges, q }: Props) {
             <TableCell className="max-sm:hidden">{numeral(node.stargazerCount).format("0a")}</TableCell>
             <TableCell className="max-sm:hidden">{new Date(node.createdAt).toLocaleDateString("pl-PL")}</TableCell>
             <TableCell className="font-medium">
-              <Link
-                className="h-full w-full block m-[-8px] p-[8px] max-sm:cursor-pointer md:pointer-events-none"
-                href={`/repository/${node.id}`}
-              >
+              <Link className="h-full w-full block m-[-8px] p-[8px] cursor-pointer" href={`/repository/${node.id}`}>
                 {node.name}
               </Link>
             </TableCell>

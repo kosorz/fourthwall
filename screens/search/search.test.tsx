@@ -1,28 +1,28 @@
-import { render } from "@testing-library/react"
+import { render, screen } from "@testing-library/react"
 import { SearchScreen } from "./search"
 import { ReactNode } from "react"
 
-const props = {
-  searchParams: Promise.resolve({
-    q: "abc",
-  }),
-}
+jest.mock("next/navigation", () => ({
+  useSearchParams: jest.fn(() => ({
+    get: jest.fn((key) => (key === "q" ? "abc" : null)),
+  })),
+}))
 
 jest.mock("next/form", () => ({ children }: { children: ReactNode }) => <form>{children}</form>)
 
-it("checks table", async () => {
-  const Result = await SearchScreen(props)
-  const screen = render(Result)
+describe("SearchScreen", () => {
+  it("renders the search input and button with correct attributes", async () => {
+    render(<SearchScreen />)
 
-  expect(screen.getByRole("textbox", { name: "Search input" })).toBeInTheDocument()
-  expect(screen.getByRole("textbox", { name: "Search input" })).toHaveAttribute("id", "search-input")
-  expect(screen.getByRole("textbox", { name: "Search input" })).toHaveAttribute("name", "q")
-  expect(screen.getByRole("textbox", { name: "Search input" })).toHaveAttribute(
-    "placeholder",
-    "Search for your next star ⭐"
-  )
-  expect(screen.getByRole("textbox", { name: "Search input" })).toHaveValue("abc")
+    const searchInput = screen.getByRole("textbox", { name: "Search input" })
+    expect(searchInput).toBeInTheDocument()
+    expect(searchInput).toHaveAttribute("id", "search-input")
+    expect(searchInput).toHaveAttribute("name", "q")
+    expect(searchInput).toHaveAttribute("placeholder", "Find next star ⭐")
+    expect(searchInput).toHaveValue("abc")
 
-  expect(screen.getByRole("button", { name: "Search" })).toBeInTheDocument()
-  expect(screen.getByRole("button", { name: "Search" })).toHaveAttribute("type", "submit")
+    const searchButton = screen.getByRole("button", { name: "Search" })
+    expect(searchButton).toBeInTheDocument()
+    expect(searchButton).toHaveAttribute("type", "submit")
+  })
 })

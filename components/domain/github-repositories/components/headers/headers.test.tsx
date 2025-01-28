@@ -1,12 +1,16 @@
 import React from "react"
 import { render, screen, fireEvent } from "@testing-library/react"
 import { Headers } from "./headers"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import { SortDirections } from "@/lib/types/github"
+import { useRouter } from "nextjs-toploader/app"
 
 jest.mock("next/navigation", () => ({
-  useRouter: jest.fn(),
   useSearchParams: jest.fn(),
+}))
+
+jest.mock("nextjs-toploader/app", () => ({
+  useRouter: jest.fn(),
 }))
 
 describe("Headers component", () => {

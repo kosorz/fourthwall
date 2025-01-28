@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button/button"
 import { TableHead, TableRow } from "@/components/ui/table/table"
 import { cn } from "@/lib/functions/cn/cn"
 import { SortDirections } from "@/lib/types/github"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
+import { useRouter } from "nextjs-toploader/app"
 
 export function Headers() {
   const router = useRouter()

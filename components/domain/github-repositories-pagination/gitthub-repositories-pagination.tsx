@@ -1,6 +1,6 @@
 "use client"
 import { cn } from "@/lib/functions/cn/cn"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import { PageInfo } from "@/lib/types/github"
 import { BrowseDirection } from "@/lib/types/pagination"
 import {
@@ -10,6 +10,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination/pagination"
+import { useRouter } from "nextjs-toploader/app"
 
 type Props = PageInfo
 

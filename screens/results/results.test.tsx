@@ -49,8 +49,11 @@ afterEach(() => {
 })
 
 jest.mock("next/navigation", () => ({
-  useRouter: jest.fn(),
   useSearchParams: jest.fn(),
+}))
+
+jest.mock("nextjs-toploader/app", () => ({
+  useRouter: jest.fn(),
 }))
 
 it("checks table", async () => {

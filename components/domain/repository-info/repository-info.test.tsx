@@ -26,7 +26,7 @@ describe("RepositoryInfo component", () => {
   test("renders correctly when some data is missing", () => {
     render(<RepositoryInfo {...mockRepo} createdAt="" />)
 
-    const info = screen.getByText(/Couldn't retrieve data/i)
+    const info = screen.getByText(/Brief: Not available/i)
 
     expect(info).toBeInTheDocument()
   })

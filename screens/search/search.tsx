@@ -1,21 +1,23 @@
+"use client"
+
 import { Button } from "@/components/ui/button/button"
 import { Input } from "@/components/ui/input/input"
-import { SearchParams } from "next/dist/server/request/search-params"
 import Form from "next/form"
+import { useSearchParams } from "next/navigation"
+import { start } from "nprogress"
 
-type Props = { searchParams: Promise<SearchParams> }
-
-export async function SearchScreen({ searchParams }: Props) {
-  const { q } = await searchParams
+export function SearchScreen() {
+  const searchParams = useSearchParams()
 
   return (
-    <Form action="/" className="flex gap-4 items-center mb-5" aria-label="Search form">
+    <Form onSubmit={start} action="/" className="flex gap-4 items-center mb-5" aria-label="Search form">
       <Input
-        defaultValue={q}
-        placeholder="Search for your next star ⭐"
+        defaultValue={searchParams.get("q") || ""}
+        placeholder="Find next star ⭐"
         id="search-input"
         name="q"
         maxLength={120}
+        required
         aria-label="Search input"
       />
       <Button className="font-semibold" type="submit">

@@ -2,12 +2,15 @@ import React from "react"
 import { render, screen, fireEvent } from "@testing-library/react"
 
 import { GithubRepositoriesPagination } from "./gitthub-repositories-pagination"
-import { useRouter, useSearchParams } from "next/navigation"
-import { BrowseDirection } from "@/lib/types/pagination"
+import { useSearchParams } from "next/navigation"
+import { useRouter } from "nextjs-toploader/app"
 
 jest.mock("next/navigation", () => ({
-  useRouter: jest.fn(),
   useSearchParams: jest.fn(),
+}))
+
+jest.mock("nextjs-toploader/app", () => ({
+  useRouter: jest.fn(),
 }))
 
 describe("GithubRepositoriesPagination component", () => {
