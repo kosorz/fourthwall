@@ -8,6 +8,7 @@
     "start": "next start",
     "test": "jest --watch",
     "test:ci": "jest --ci",
+    "test:coverage": "jest --coverage",
     "test:e2e": "playwright test",
     "test:e2e:debug": "playwright test --debug"
   },

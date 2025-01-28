@@ -11,7 +11,8 @@ const customJestConfig = {
     "^@/(.*)$": "<rootDir>/$1",
     "\\.(css|scss|sass)$": "identity-obj-proxy",
   },
-  testMatch: ["**/?(*.)+(test).[jt]s?(x)"], // Exclude .spec. files
+  testMatch: ["**/?(*.)+(test).[jt]s?(x)"],
+  collectCoverage: true,
 }
 
 module.exports = createJestConfig(customJestConfig)
