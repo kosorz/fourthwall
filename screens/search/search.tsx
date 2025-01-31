@@ -12,7 +12,7 @@ export function SearchScreen() {
 
   return (
     <>
-      <Form onSubmit={start} action="/" className="mb-2 grid grid-cols-4 gap-2 col" aria-label="Search form">
+      <Form onSubmit={start} action="/" className="mb-2 grid grid-cols-4 gap-2" aria-label="Search form">
         <label htmlFor="search-input" className="col-span-4">
           Search repositories by name, author and more...
         </label>
@@ -36,10 +36,10 @@ export function SearchScreen() {
         aria-label="Link to cheat-sheet"
         target="__blank"
         passHref
-        className="mb-5 inline-block"
+        className="mb-5 inline-block text-sm"
         href="https://www.freecodecamp.org/news/github-search-tips/#:~:text=How%20to%20Search%20Repositories"
       >
-        Psst.. here's a <span className="font-semibold ">cheat-sheet</span>!
+        Psst.. here's a <span className="font-semibold">cheat-sheet</span>!
       </Link>
     </>
   )
