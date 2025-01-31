@@ -7,7 +7,7 @@ type Props = {
   params: Promise<{ id: string }>
 }
 
-export async function RepositoryScreen({ params }: Props) {
+export async function DetailsScreen({ params }: Props) {
   const { id } = await params
   const repository: Repository = await getRepo({ id })
 

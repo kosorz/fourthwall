@@ -1,3 +1,3 @@
-import { RepositoryScreen } from "@/screens/details/repository"
+import { DetailsScreen } from "@/screens/details/details"
 
-export default RepositoryScreen
+export default DetailsScreen

@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom"
 import { render } from "@testing-library/react"
-import { RepositoryScreen } from "./repository"
+import { DetailsScreen as DetailsScreen } from "./details"
 import { Repository } from "@/lib/types/github"
 
 const props = {
@@ -33,8 +33,8 @@ afterEach(() => {
   jest.clearAllMocks()
 })
 
-it("checks", async () => {
-  const Result = await RepositoryScreen(props)
+it("checks details", async () => {
+  const Result = await DetailsScreen(props)
   const screen = render(Result)
 
   const repositoryName = screen.getByRole("heading", { name: "test-name" })
