@@ -22,8 +22,8 @@ I've discoverd that REST api as well as GraphQl does not support sorting by all 
 
 In an effort to provide smooth mobile experience and avoid user being overwhelmed by the data density on a small screen following adjustments were made:
 
-- only name columns visible
-- additional routes to show details of each repository
+- only name and stars columns visible
+- additional routes (parallel) routes to show details of each repository
 
 ## Error tracking
 

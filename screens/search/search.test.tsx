@@ -32,7 +32,7 @@ describe("SearchScreen", () => {
     expect(linkElement).toBeInTheDocument()
     expect(linkElement).toHaveAttribute(
       "href",
-      "https://gist.github.com/bonniss/4f0de4f599708c5268134225dda003e0#repository-search:~:text=results%20containing%20cat.-,Repository,-search"
+      "https://www.freecodecamp.org/news/github-search-tips/#:~:text=How%20to%20Search%20Repositories"
     )
     expect(linkElement).toHaveAttribute("target", "__blank")
     expect(linkElement).toHaveTextContent("Psst.. here's a cheat-sheet!")

@@ -73,7 +73,7 @@ describe("Table components", () => {
 
     const row = screen.getByText("Row Cell").closest("tr")
     expect(row).toHaveClass("row-class")
-    expect(row).toHaveClass("hover:bg-blue-50")
+    expect(row).toHaveClass("border-b transition-colors row-class not:first:hover:bg-blue-50")
   })
 
   test("renders TableHead with default styles", () => {

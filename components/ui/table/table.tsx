@@ -18,7 +18,7 @@ const TableBody = ({ className, ...props }: HTMLAttributes<HTMLTableSectionEleme
 }
 
 const TableRow = ({ className, ...props }: HTMLAttributes<HTMLTableRowElement>) => {
-  return <tr className={cn("border-b transition-colors", className, "hover:bg-blue-50")} {...props} />
+  return <tr className={cn("border-b transition-colors", className, "not:first:hover:bg-blue-50")} {...props} />
 }
 
 const TableHead = ({ className, ...props }: ThHTMLAttributes<HTMLTableCellElement>) => {

@@ -33,7 +33,7 @@ export function GithubRepositories({ edges, q }: Props) {
         {edges.map(({ node }) => (
           <TableRow key={node.id} className="hover:bg-gray-100">
             <TableCell className="max-sm:hidden">{node.owner.login}</TableCell>
-            <TableCell className="max-sm:hidden">{numeral(node.stargazerCount).format("0a")}</TableCell>
+            <TableCell>{numeral(node.stargazerCount).format("0a")}</TableCell>
             <TableCell className="max-sm:hidden">{new Date(node.createdAt).toLocaleDateString("pl-PL")}</TableCell>
             <TableCell className="font-medium">
               <Link className="h-full w-full block m-[-8px] p-[8px] cursor-pointer" href={`/repository/${node.id}`}>

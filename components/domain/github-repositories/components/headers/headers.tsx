@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button/button"
 import { TableHead, TableRow } from "@/components/ui/table/table"
-import { cn } from "@/lib/functions/cn/cn"
 import { SortDirections } from "@/lib/types/github"
 import { useSearchParams } from "next/navigation"
 import { useRouter } from "nextjs-toploader/app"
@@ -23,38 +22,33 @@ export function Headers() {
     router.push(`?${nextParams.toString()}`)
   }
 
-  const buttonStyles = "h-[40px] px-[8px] py-[1px] flex justify-start cursor-pointer"
-
-  const Sort = <FaSort width={10} height={10} />
+  const buttonStyles = "h-[40px] px-[8px] py-[1px] flex justify-start cursor-pointer w-full p-0 hover:bg-transparent"
 
   return (
     <TableRow>
       <TableHead className="max-sm:hidden">User</TableHead>
 
-      <Button
-        className={cn(buttonStyles, "max-sm:hidden")}
-        variant={"ghost"}
-        asChild
-        onClick={() => sortBy([SortDirections.StarsAsc, SortDirections.StarsDesc])}
-      >
-        <TableHead>
+      <TableHead>
+        <Button
+          className={buttonStyles}
+          variant={"ghost"}
+          onClick={() => sortBy([SortDirections.StarsAsc, SortDirections.StarsDesc])}
+        >
           Stars <FaSort />
-        </TableHead>
-      </Button>
+        </Button>
+      </TableHead>
 
       <TableHead className="max-sm:hidden">Created at</TableHead>
 
-      <Button
-        className={buttonStyles}
-        variant={"ghost"}
-        asChild
-        onClick={() => sortBy([SortDirections.NameAsc, SortDirections.NameDesc])}
-      >
-        <TableHead className="w-full">
-          Name
-          <FaSort />
-        </TableHead>
-      </Button>
+      <TableHead className="w-full">
+        <Button
+          className={buttonStyles}
+          variant={"ghost"}
+          onClick={() => sortBy([SortDirections.NameAsc, SortDirections.NameDesc])}
+        >
+          Name <FaSort />
+        </Button>
+      </TableHead>
     </TableRow>
   )
 }

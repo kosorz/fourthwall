@@ -36,8 +36,9 @@ export function SearchScreen() {
       <Link
         aria-label="Link to cheat-sheet"
         target="__blank"
-        className="mb-5"
-        href="https://gist.github.com/bonniss/4f0de4f599708c5268134225dda003e0#repository-search:~:text=results%20containing%20cat.-,Repository,-search"
+        passHref
+        className="mb-5 block"
+        href="https://www.freecodecamp.org/news/github-search-tips/#:~:text=How%20to%20Search%20Repositories"
       >
         Psst.. here's a <span className="font-semibold ">cheat-sheet</span>!
       </Link>
