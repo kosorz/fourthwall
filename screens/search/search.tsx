@@ -12,23 +12,22 @@ export function SearchScreen() {
 
   return (
     <>
-      <Form onSubmit={start} action="/" className="gap-4 flex" aria-label="Search form">
-        <div className="mb-2 flex-grow">
-          <label htmlFor="search-input" className="block mb-2">
-            Search repositories by name, author and more...
-          </label>
-          <Input
-            defaultValue={searchParams.get("q") || ""}
-            placeholder="Find next star ⭐"
-            id="search-input"
-            name="q"
-            maxLength={120}
-            required
-            aria-label="Search input"
-          />
-        </div>
+      <Form onSubmit={start} action="/" className="mb-2 grid grid-cols-4 gap-2 col" aria-label="Search form">
+        <label htmlFor="search-input" className="col-span-4">
+          Search repositories by name, author and more...
+        </label>
+        <Input
+          defaultValue={searchParams.get("q") || ""}
+          placeholder="Find next star ⭐"
+          id="search-input"
+          name="q"
+          className="col-span-3"
+          maxLength={120}
+          required
+          aria-label="Search input"
+        />
 
-        <Button className="font-semibold mb-2 block self-end" type="submit">
+        <Button className="font-semibold block self-end col-span-1 mb-3" type="submit">
           Search
         </Button>
       </Form>
@@ -37,7 +36,7 @@ export function SearchScreen() {
         aria-label="Link to cheat-sheet"
         target="__blank"
         passHref
-        className="mb-5 block"
+        className="mb-5 inline-block"
         href="https://www.freecodecamp.org/news/github-search-tips/#:~:text=How%20to%20Search%20Repositories"
       >
         Psst.. here's a <span className="font-semibold ">cheat-sheet</span>!
