@@ -10,7 +10,7 @@ Its a different perspective after using styled components in conjunction with ma
 
 ## Data fetching
 
-I've decided to use authenticated way of consuming Github GraphQL server to get relevant data and particulairly to avoid frequent problems with rate limit. If the scope of interaction with some GraphQL servers would be broader a dedicated client might have been useful, for current scope I've decided to refrain from adding it.
+I've decided to use authenticated way of consuming Github GraphQL server to get relevant data and particularly to avoid frequent problems with rate limiting. If the scope of interaction with some GraphQL servers would be broader a dedicated client might have been useful, for current scope I've decided to refrain from adding it.
 
 You might notice that caching is there but there's no explicit mechanism implemented nor 3rd party solution added to handle this. This is because opt-in cache functionality built into fetch API exposed by Next.js was used.
 
@@ -35,7 +35,7 @@ Using server components approach provides an additional layer of security. Conta
 
 ## Future improvements
 
-- ci/cd workflows for tests
+- ci/cd workflows for tests and deployment
 - limiting push/merge permissions
 - setting up staging environment
 - precommit hooks
@@ -50,7 +50,7 @@ I was able to cover majority of components with unit tests using jest and testin
 
 ## E2E tests
 
-I picked playwright for a selfish reason of self development, I already a years long window of opportunity to work with cypress - playwright biggest competitor therefore I wanted to give it a try.
+I picked playwright for a selfish reason of self development. I was using cypress for years so I want to give a spin to something new (and what actually competes with cypress).
 
 ## Getting started in localhost
 

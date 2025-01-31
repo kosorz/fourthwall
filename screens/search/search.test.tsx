@@ -21,8 +21,20 @@ describe("SearchScreen", () => {
     expect(searchInput).toHaveAttribute("placeholder", "Find next star ⭐")
     expect(searchInput).toHaveValue("abc")
 
+    const label = screen.getByLabelText(/Search repositories by name, author and more.../i)
+    expect(label).toBeInTheDocument()
+
     const searchButton = screen.getByRole("button", { name: "Search" })
     expect(searchButton).toBeInTheDocument()
     expect(searchButton).toHaveAttribute("type", "submit")
+
+    const linkElement = screen.getByRole("link", { name: /cheat-sheet/i })
+    expect(linkElement).toBeInTheDocument()
+    expect(linkElement).toHaveAttribute(
+      "href",
+      "https://gist.github.com/bonniss/4f0de4f599708c5268134225dda003e0#repository-search:~:text=results%20containing%20cat.-,Repository,-search"
+    )
+    expect(linkElement).toHaveAttribute("target", "__blank")
+    expect(linkElement).toHaveTextContent("Psst.. here's a cheat-sheet!")
   })
 })

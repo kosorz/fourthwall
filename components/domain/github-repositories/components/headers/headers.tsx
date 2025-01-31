@@ -6,6 +6,7 @@ import { cn } from "@/lib/functions/cn/cn"
 import { SortDirections } from "@/lib/types/github"
 import { useSearchParams } from "next/navigation"
 import { useRouter } from "nextjs-toploader/app"
+import { FaSort } from "react-icons/fa"
 
 export function Headers() {
   const router = useRouter()
@@ -24,6 +25,8 @@ export function Headers() {
 
   const buttonStyles = "h-[40px] px-[8px] py-[1px] flex justify-start cursor-pointer"
 
+  const Sort = <FaSort width={10} height={10} />
+
   return (
     <TableRow>
       <TableHead className="max-sm:hidden">User</TableHead>
@@ -34,7 +37,9 @@ export function Headers() {
         asChild
         onClick={() => sortBy([SortDirections.StarsAsc, SortDirections.StarsDesc])}
       >
-        <TableHead>Stars</TableHead>
+        <TableHead>
+          Stars <FaSort />
+        </TableHead>
       </Button>
 
       <TableHead className="max-sm:hidden">Created at</TableHead>
@@ -45,7 +50,10 @@ export function Headers() {
         asChild
         onClick={() => sortBy([SortDirections.NameAsc, SortDirections.NameDesc])}
       >
-        <TableHead className="w-full">Name</TableHead>
+        <TableHead className="w-full">
+          Name
+          <FaSort />
+        </TableHead>
       </Button>
     </TableRow>
   )
