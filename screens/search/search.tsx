@@ -6,9 +6,17 @@ import Form from "next/form"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { start } from "nprogress"
+import { useMemo } from "react"
 
 export function SearchScreen() {
   const searchParams = useSearchParams()
+
+  // It's not really a performance optimization (it wouldn't be justified)
+  // this is to retain value in the input while route changes to the one that invokes modal ->
+  // changing the url -> removing the q from search -> clearing the input value under the dialog backdrop
+  const defaultValue = useMemo(() => {
+    return searchParams.get("q") || ""
+  }, [])
 
   return (
     <>
@@ -17,7 +25,7 @@ export function SearchScreen() {
           Search repositories by name, author and more...
         </label>
         <Input
-          defaultValue={searchParams.get("q") || ""}
+          defaultValue={defaultValue}
           placeholder="Find next star ⭐"
           id="search-input"
           name="q"
