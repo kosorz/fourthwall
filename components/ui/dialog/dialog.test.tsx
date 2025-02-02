@@ -38,7 +38,9 @@ describe("Dialog components", () => {
   test("renders HistoryClose with default styles", () => {
     render(
       <Dialog open>
+        <DialogTitle>With History Close</DialogTitle>
         <DialogContent withHistoryBackClose />
+        <DialogDescription>Description Content</DialogDescription>
       </Dialog>
     )
 

@@ -45,7 +45,7 @@ jest.mock("nextjs-toploader/app", () => ({
   useRouter: jest.fn(),
 }))
 
-it("checks table", () => {
+it("checks table with content", () => {
   const screen = render(<GithubRepositories edges={edges} q={"qwe"} />)
 
   expect(screen.getByText("User")).toBeInTheDocument()
@@ -72,4 +72,17 @@ it("checks table", () => {
   expect(screen.getByRole("link", { name: "test-name-3" })).toHaveAttribute("href", "/repository/test-id-3")
 
   expect(screen.getByText("A list of matching repositories.")).toBeInTheDocument()
+})
+
+it("checks table without search", () => {
+  const screen = render(<GithubRepositories edges={[]} q={""} />)
+
+  expect(screen.container.children.length).toBe(0)
+})
+
+it("checks table without content", () => {
+  const screen = render(<GithubRepositories edges={[]} q={"abc"} />)
+
+  expect(screen.getByText("Nothing found")).toBeInTheDocument()
+  expect(screen.getByText("No results found for abc")).toBeInTheDocument()
 })
