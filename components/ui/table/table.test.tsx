@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen } from "@testing-library/react"
 
-import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell, TableCaption } from "./table"
+import { Table, TableHeader, TableBody, TableHead, TableRow, TableCell, TableCaption, TableLinkCell } from "./table"
 
 describe("Table components", () => {
   test("renders Table with default props", () => {
@@ -113,5 +113,42 @@ describe("Table components", () => {
     const row = screen.getByText("Cell 1").closest("tr")
     expect(row).toContainElement(screen.getByText("Cell 1"))
     expect(row).toContainElement(screen.getByText("Cell 2"))
+  })
+
+  test("renders TableLinkCell with provided href and children", () => {
+    render(
+      <Table>
+        <TableBody>
+          <TableRow>
+            <TableLinkCell href="/test">Test Link</TableLinkCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    )
+
+    const link = screen.getByText("Test Link")
+    expect(link).toBeInTheDocument()
+    expect(link).toHaveAttribute("href", "/test")
+  })
+
+  test("applies default and custom class names", () => {
+    render(
+      <Table>
+        <TableBody>
+          <TableRow>
+            <TableLinkCell href="/test" className="custom-class">
+              Test Link
+            </TableLinkCell>
+          </TableRow>
+        </TableBody>
+      </Table>
+    )
+
+    const cell = screen.getByText("Test Link").closest("td")
+    expect(cell).toHaveClass("p-0")
+    expect(cell).toHaveClass("custom-class")
+
+    const link = screen.getByText("Test Link")
+    expect(link).toHaveClass("cursor-pointer p-2 w-full block")
   })
 })

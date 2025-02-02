@@ -1,5 +1,6 @@
-import React, { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
+import React, { ComponentProps, HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
 import { cn } from "@/lib/functions/cn/cn"
+import Link, { LinkProps } from "next/link"
 
 const Table = ({ className, ...props }: HTMLAttributes<HTMLTableElement>) => {
   return (
@@ -42,8 +43,23 @@ const TableCell = ({ className, ...props }: TdHTMLAttributes<HTMLTableCellElemen
   )
 }
 
+const TableLinkCell = ({
+  className,
+  href,
+  children,
+  ...props
+}: TdHTMLAttributes<HTMLTableCellElement> & { href: string }) => {
+  return (
+    <TableCell {...props} className={cn("p-0", className)}>
+      <Link href={href} className={"cursor-pointer p-2 w-full block"}>
+        {children}
+      </Link>
+    </TableCell>
+  )
+}
+
 const TableCaption = ({ className, ...props }: HTMLAttributes<HTMLTableCaptionElement>) => {
   return <caption className={cn("mt-4 text-sm text-muted-foreground", className)} {...props} />
 }
 
-export { Table, TableHeader, TableBody, TableHead, TableRow, TableCell, TableCaption }
+export { Table, TableHeader, TableBody, TableHead, TableRow, TableLinkCell, TableCell, TableCaption }

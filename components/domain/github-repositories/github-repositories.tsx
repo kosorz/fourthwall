@@ -1,12 +1,10 @@
-import { Table, TableBody, TableCaption, TableCell, TableHeader, TableRow } from "@/components/ui/table/table"
+import { Table, TableBody, TableCaption, TableHeader, TableLinkCell, TableRow } from "@/components/ui/table/table"
 import { Repository } from "@/lib/types/github"
 import numeral from "numeral"
 import { Headers } from "./components/headers/headers"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert/alert"
 import { PiEmpty } from "react-icons/pi"
-import Link from "next/link"
 import { cn } from "@/lib/functions/cn/cn"
-import { ReactNode } from "react"
 
 type Props = {
   edges: { node: Repository }[]
@@ -34,30 +32,20 @@ export function GithubRepositories({ edges, q }: Props) {
       </TableHeader>
       <TableBody>
         {edges.map(({ node }) => {
-          function LinkWrapper({ children }: { children: ReactNode }) {
-            return (
-              <Link className="h-full w-full block p-[8px] cursor-pointer" href={`/repository/${node.id}`}>
-                {children}
-              </Link>
-            )
-          }
-
-          const cellClasses = "p-0"
+          const redirect = `/repository/${node.id}`
 
           return (
             <TableRow key={node.id} className="hover:bg-gray-100">
-              <TableCell className={cn(cellClasses, "max-sm:hidden")}>
-                <LinkWrapper>{node.owner.login}</LinkWrapper>
-              </TableCell>
-              <TableCell className={cellClasses}>
-                <LinkWrapper>{numeral(node.stargazerCount).format("0a")}</LinkWrapper>
-              </TableCell>
-              <TableCell className={cn(cellClasses, "max-sm:hidden")}>
-                <LinkWrapper>{new Date(node.createdAt).toLocaleDateString("pl-PL")}</LinkWrapper>
-              </TableCell>
-              <TableCell className={cn(cellClasses, "font-medium")}>
-                <LinkWrapper>{node.name}</LinkWrapper>
-              </TableCell>
+              <TableLinkCell href={redirect} className={"max-sm:hidden"}>
+                {node.owner.login}
+              </TableLinkCell>
+              <TableLinkCell href={redirect}>{numeral(node.stargazerCount).format("0a")}</TableLinkCell>
+              <TableLinkCell href={redirect} className={"max-sm:hidden"}>
+                {new Date(node.createdAt).toLocaleDateString("pl-PL")}
+              </TableLinkCell>
+              <TableLinkCell className={"font-medium"} href={redirect}>
+                {node.name}
+              </TableLinkCell>
             </TableRow>
           )
         })}
