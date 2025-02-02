@@ -4,13 +4,20 @@ import { render, screen } from "@testing-library/react"
 import {
   Dialog,
   DialogPortal,
-  DialogOverlay,
   DialogFooter,
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
 } from "./dialog"
+
+jest.mock("nextjs-toploader/app", () => ({
+  useRouter: jest.fn().mockReturnValue({ back: jest.fn() }),
+}))
+
+afterEach(() => {
+  jest.clearAllMocks()
+})
 
 describe("Dialog components", () => {
   test("renders DialogHeader with default styles", () => {
@@ -26,6 +33,17 @@ describe("Dialog components", () => {
 
     const header = screen.getByText("Header Content")
     expect(header).toHaveClass("flex flex-col space-y-1.5 text-center sm:text-left")
+  })
+
+  test("renders HistoryClose with default styles", () => {
+    render(
+      <Dialog open>
+        <DialogContent withHistoryBackClose />
+      </Dialog>
+    )
+
+    const Close = screen.getByText("Close")
+    expect(Close).toBeDefined()
   })
 
   test("renders DialogTitle with default styles", () => {

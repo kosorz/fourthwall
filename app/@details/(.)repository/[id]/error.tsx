@@ -17,7 +17,7 @@ type Props = {
 export default function Error({ reset }: Props) {
   return (
     <Dialog open>
-      <DialogContent>
+      <DialogContent withHistoryBackClose>
         <DialogHeader>
           <DialogTitle className="text-destructive">Heads up!</DialogTitle>
           <DialogDescription className="text-destructive">Something went wrong. Try again later!</DialogDescription>

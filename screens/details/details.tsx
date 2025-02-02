@@ -13,7 +13,7 @@ export async function DetailsScreen({ params }: Props) {
 
   return (
     <Dialog open>
-      <DialogContent>
+      <DialogContent withHistoryBackClose>
         <DialogHeader>
           <DialogTitle>{repository?.name || "Not available"}</DialogTitle>
         </DialogHeader>

@@ -31,7 +31,7 @@ export default function Layout({ results, children, details, search }: Props) {
   return (
     <html lang="en">
       <body className={`${interFont.variable} ${robotoMonoFont.variable} antialiased`}>
-        <NextTopLoader color="#0f172a" height={5} />
+        <NextTopLoader height={5} />
         <main className="flex flex-col align-top p-4 lg:p-8">
           <section className="flex justify-center" aria-label="Logos section">
             <a className="flex gap-2 items-center" href="/">

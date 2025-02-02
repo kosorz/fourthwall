@@ -29,6 +29,10 @@ global.fetch = jest.fn(() =>
   } as Response)
 )
 
+jest.mock("nextjs-toploader/app", () => ({
+  useRouter: jest.fn().mockReturnValue({ back: jest.fn() }),
+}))
+
 afterEach(() => {
   jest.clearAllMocks()
 })
