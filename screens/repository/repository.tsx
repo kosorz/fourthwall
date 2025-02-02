@@ -1,8 +1,6 @@
 import { RepositoryInfo } from "@/components/domain/repository-info/repository-info"
-import { Button } from "@/components/ui/button/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card/card"
 import { getRepo } from "@/api/github"
-import { Repository } from "@/lib/types/github"
 
 type Props = {
   params: Promise<{ id: string }>
@@ -10,7 +8,7 @@ type Props = {
 
 export async function RepositoryScreen({ params }: Props) {
   const { id } = await params
-  const repository: Repository = await getRepo({ id })
+  const repository = await getRepo({ id })
 
   return (
     <Card>
@@ -18,10 +16,8 @@ export async function RepositoryScreen({ params }: Props) {
         <CardTitle>{repository?.name || "Not available"}</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>
-          <RepositoryInfo {...repository} />
-        </p>
-        <p>Description: {repository?.description || "Not available"}</p>
+        <RepositoryInfo {...repository} />
+        <p className="mt-4">Description: {repository?.description || "Not available"}</p>
       </CardContent>
     </Card>
   )

@@ -23,7 +23,7 @@ Using server components approach provides an additional layer of security. Conta
 
 ## General
 
-I've discoverd that REST api as well as GraphQl does not support sorting by all columns mentioned in the task description. Sorting functionality was limited to name and stars(stargazers).
+I've discoverd that REST api as well as GraphL does not support sorting by all columns mentioned in the task description. Sorting functionality was limited to name and stars(stargazers).
 
 ## Mobile specific limitations
 
@@ -43,6 +43,7 @@ Error (and all activity!) is tracked via Sentry (don't get scared I won't know w
 - setting up staging environment
 - precommit hooks
 - dark mode
+- disable sorting buttons on headers when user has put a sort in search "q" as it should take precedence
 - containerization and scaling (if the application would get traction)
 - while all checks are in passing zones there is always a room for improvement:
   <img width="324" alt="image" src="https://github.com/user-attachments/assets/2bb84773-1565-4a26-83c4-cd572bf0c415" />

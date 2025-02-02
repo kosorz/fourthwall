@@ -1,4 +1,4 @@
-export type Response = {
+export type RepositorySearchResponse = {
   data: {
     search: {
       edges: { node: Repository }[]

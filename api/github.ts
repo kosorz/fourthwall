@@ -1,5 +1,6 @@
 "use server"
 
+import { Repository, RepositorySearchResponse } from "@/lib/types/github"
 import { BrowseDirection } from "../lib/types/pagination"
 
 const headers = {
@@ -19,7 +20,7 @@ export async function getRepos({
   q: string | string[] | undefined
   sort: string | string[] | undefined
   direction?: string | string[] | undefined
-}) {
+}): Promise<RepositorySearchResponse> {
   if (!q) {
     throw Error("Search phrase is required.")
   }
@@ -76,7 +77,7 @@ export async function getRepos({
   return json
 }
 
-export async function getRepo({ id }: { id?: string | string[] | undefined }) {
+export async function getRepo({ id }: { id?: string | string[] | undefined }): Promise<Repository> {
   if (!id) {
     throw Error("Repository ID is required.")
   }

@@ -6,6 +6,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert/alert
 import { PiEmpty } from "react-icons/pi"
 import Link from "next/link"
 import { cn } from "@/lib/functions/cn/cn"
+import { ReactNode } from "react"
 
 type Props = {
   edges: { node: Repository }[]
@@ -20,7 +21,9 @@ export function GithubRepositories({ edges, q }: Props) {
       <Alert>
         <PiEmpty width={16} height={16} />
         <AlertTitle>Nothing found</AlertTitle>
-        <AlertDescription>{q === "" ? `Please provide search phrase` : `No results found for ${q}`}</AlertDescription>
+        <AlertDescription className="break-words">
+          {q === "" ? `Please provide search phrase` : `No results found for ${q}`}
+        </AlertDescription>
       </Alert>
     )
 
@@ -30,18 +33,34 @@ export function GithubRepositories({ edges, q }: Props) {
         <Headers />
       </TableHeader>
       <TableBody>
-        {edges.map(({ node }) => (
-          <TableRow key={node.id} className="hover:bg-gray-100">
-            <TableCell className="max-sm:hidden">{node.owner.login}</TableCell>
-            <TableCell>{numeral(node.stargazerCount).format("0a")}</TableCell>
-            <TableCell className="max-sm:hidden">{new Date(node.createdAt).toLocaleDateString("pl-PL")}</TableCell>
-            <TableCell className="font-medium">
-              <Link className="h-full w-full block m-[-8px] p-[8px] cursor-pointer" href={`/repository/${node.id}`}>
-                {node.name}
+        {edges.map(({ node }) => {
+          function LinkWrapper({ children }: { children: ReactNode }) {
+            return (
+              <Link className="h-full w-full block p-[8px] cursor-pointer" href={`/repository/${node.id}`}>
+                {children}
               </Link>
-            </TableCell>
-          </TableRow>
-        ))}
+            )
+          }
+
+          const cellClasses = "p-0"
+
+          return (
+            <TableRow key={node.id} className="hover:bg-gray-100">
+              <TableCell className={cn(cellClasses, "max-sm:hidden")}>
+                <LinkWrapper>{node.owner.login}</LinkWrapper>
+              </TableCell>
+              <TableCell className={cellClasses}>
+                <LinkWrapper>{numeral(node.stargazerCount).format("0a")}</LinkWrapper>
+              </TableCell>
+              <TableCell className={cn(cellClasses, "max-sm:hidden")}>
+                <LinkWrapper>{new Date(node.createdAt).toLocaleDateString("pl-PL")}</LinkWrapper>
+              </TableCell>
+              <TableCell className={cn(cellClasses, "font-medium")}>
+                <LinkWrapper>{node.name}</LinkWrapper>
+              </TableCell>
+            </TableRow>
+          )
+        })}
       </TableBody>
       <TableCaption>A list of matching repositories.</TableCaption>
     </Table>

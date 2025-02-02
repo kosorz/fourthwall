@@ -1,7 +1,6 @@
 import { RepositoryInfo } from "@/components/domain/repository-info/repository-info"
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog/dialog"
 import { getRepo } from "@/api/github"
-import { Repository } from "@/lib/types/github"
 
 type Props = {
   params: Promise<{ id: string }>
@@ -9,7 +8,7 @@ type Props = {
 
 export async function DetailsScreen({ params }: Props) {
   const { id } = await params
-  const repository: Repository = await getRepo({ id })
+  const repository = await getRepo({ id })
 
   return (
     <Dialog open>
