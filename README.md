@@ -11,9 +11,11 @@ I’ve decided to use Tailwind CSS and shadcn/ui primarily to explore and experi
 
 ## Data fetching
 
-I've decided to use authenticated way of consuming Github GraphQL server to get relevant data and particularly to avoid frequent problems with rate limiting. If the scope of interaction with some GraphQL servers would be broader a dedicated client might have been useful, for current scope I've decided to refrain from adding it.
+I've decided to use authorized way of consuming Github GraphQL server to get relevant data and particularly to avoid frequent problems with rate limiting. If the scope of interaction with some GraphQL servers would be broader a dedicated client might have been useful, for current scope I've decided to refrain from adding it.
 
-You might notice that caching is there but there's no explicit mechanism implemented nor 3rd party solution added to handle this. This is because opt-in cache functionality built into fetch API exposed by Next.js was used.
+You might notice that caching is there but there's no explicit mechanism implemented nor 3rd party solution added to handle this. This is because cache functionality built into fetch API exposed by Next.js was used.
+
+Unfortunately it's not possible to rely on URL and maintain a static rendered status of page. If we wanted to keep the data rendering in the client while still fetch the relevant data via node (to hide our interactions with github API for security reasons) it wouldn't have a significant impact on performance. The phase that costs us time is between user navigating to another page and our node server responding with data (so called latency on the wires between client browser and our node server) - not necessarily rendering of the template with obtained data or server getting the data from github as frequently cache has a HIT status so latency in contact with github is next to nothing.
 
 ## Security
 

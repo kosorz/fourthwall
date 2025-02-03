@@ -8,7 +8,7 @@ type Props = {
 
 export async function DetailsScreen({ params }: Props) {
   const { id } = await params
-  const repository = await getRepo({ id: id.toString() })
+  const repository = await getRepo({ id })
 
   return (
     <Dialog open>

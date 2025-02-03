@@ -55,14 +55,14 @@ export async function getRepos({
     },
   }
 
-  const options = {
+  const response = await fetch("https://api.github.com/graphql", {
     method: "POST",
     headers,
     body: JSON.stringify(requestBody),
-    next: { revalidate: 3600 },
-  }
-
-  const response = await fetch("https://api.github.com/graphql", options)
+    next: {
+      revalidate: 60,
+    },
+  })
 
   if (!response.ok) {
     throw Error(`GraphQL request failed: ${response.statusText}`)
@@ -104,14 +104,14 @@ export async function getRepo({ id }: { id?: string }): Promise<Repository> {
     variables: { id },
   }
 
-  const options = {
+  const response = await fetch("https://api.github.com/graphql", {
     method: "POST",
     headers,
     body: JSON.stringify(requestBody),
-    next: { revalidate: 3600 },
-  }
-
-  const response = await fetch("https://api.github.com/graphql", options)
+    next: {
+      revalidate: 60,
+    },
+  })
 
   if (!response.ok) {
     throw Error(`GraphQL request failed: ${response.statusText}`)
