@@ -1,0 +1,1 @@
+export const FULL_SIZE_TABLE_MIN_ITEMS = 8

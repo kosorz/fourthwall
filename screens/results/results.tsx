@@ -1,8 +1,7 @@
 import { SearchParams } from "next/dist/server/request/search-params"
 import { Suspense } from "react"
 import { GithubRepositoriesPagination } from "@/components/domain/github-repositories-pagination/gitthub-repositories-pagination"
-import { getRepos } from "@/api/github"
-import { RepositorySearchResponse } from "@/lib/types/github"
+import { getRepos } from "@/data-access/github"
 import GithubRepositoriesAsync, {
   GithubRepositories,
 } from "@/components/domain/github-repositories/github-repositories"
@@ -11,14 +10,12 @@ import { GithubRepositoriesTableSkeleton } from "@/components/domain/github-repo
 type Props = { searchParams: Promise<SearchParams> }
 
 export async function ResultsScreen({ searchParams }: Props) {
-  const { q = "", startCursor = "", endCursor = "", direction = "", sort = "" } = await searchParams
+  const { q, startCursor, endCursor, direction, sort } = await searchParams
 
   if (!q) return <></>
 
   const {
-    data: {
-      search: { edges, pageInfo },
-    },
+    search: { edges, pageInfo },
   } = await getRepos({ startCursor, endCursor, direction, q, sort })
 
   // to have streaming via suspense we need to render async component

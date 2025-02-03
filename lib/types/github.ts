@@ -1,9 +1,7 @@
 export type RepositorySearchResponse = {
-  data: {
-    search: {
-      edges: { node: Repository }[]
-      pageInfo: PageInfo
-    }
+  search: {
+    edges: { node: Repository }[]
+    pageInfo: PageInfo
   }
 }
 

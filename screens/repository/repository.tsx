@@ -1,6 +1,6 @@
 import { RepositoryInfo } from "@/components/domain/repository-info/repository-info"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card/card"
-import { getRepo } from "@/api/github"
+import { getRepo } from "@/data-access/github"
 
 type Props = {
   params: Promise<{ id: string }>

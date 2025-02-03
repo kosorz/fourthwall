@@ -5,13 +5,12 @@ import { Headers } from "./components/headers/headers"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert/alert"
 import { PiEmpty } from "react-icons/pi"
 import { cn } from "@/lib/functions/cn/cn"
+import { FULL_SIZE_TABLE_MIN_ITEMS } from "@/lib/constants/constants"
 
 type Props = {
   edges: { node: Repository }[]
   q: string | string[]
 }
-
-const FULL_SIZE_TABLE_MIN_ITEMS = 8
 
 export function GithubRepositories({ edges, q }: Props) {
   if (!q) return

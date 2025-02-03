@@ -15,11 +15,11 @@ export async function getRepos({
   sort,
   q,
 }: {
-  startCursor?: string | string[] | undefined
-  endCursor?: string | string[] | undefined
-  q: string | string[] | undefined
-  sort: string | string[] | undefined
-  direction?: string | string[] | undefined
+  startCursor?: string | string[]
+  endCursor?: string | string[]
+  q?: string | string[]
+  sort?: string | string[]
+  direction?: string | string[]
 }): Promise<RepositorySearchResponse> {
   if (!q) {
     throw Error("Search phrase is required.")
@@ -68,16 +68,16 @@ export async function getRepos({
     throw Error(`GraphQL request failed: ${response.statusText}`)
   }
 
-  const json = await response.json()
+  const { data, errors } = await response.json()
 
-  if (json.errors) {
+  if (errors) {
     throw Error(`GraphQL request failed`)
   }
 
-  return json
+  return data
 }
 
-export async function getRepo({ id }: { id?: string | string[] | undefined }): Promise<Repository> {
+export async function getRepo({ id }: { id?: string }): Promise<Repository> {
   if (!id) {
     throw Error("Repository ID is required.")
   }
