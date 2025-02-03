@@ -10,9 +10,9 @@ test.describe("GitHub Repository Table - Fourthwall", () => {
     await expect(githubLogo).toBeVisible()
 
     await expect(page.getByText("User")).toBeVisible()
-    await expect(page.getByText("Stars")).toBeVisible()
+    await expect(page.getByText(/Stars/)).toBeVisible()
     await expect(page.getByText("Created at")).toBeVisible()
-    await expect(page.getByText("Name")).toBeVisible()
+    await expect(page.getByText(/Name/)).toBeVisible()
 
     const rows = page.locator("tbody tr")
     const firstPageData = await rows.allTextContents()

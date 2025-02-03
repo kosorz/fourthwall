@@ -11,6 +11,8 @@ type Props = {
   q: string | string[]
 }
 
+const FULL_SIZE_TABLE_MIN_ITEMS = 8
+
 export function GithubRepositories({ edges, q }: Props) {
   if (!q) return
 
@@ -26,7 +28,7 @@ export function GithubRepositories({ edges, q }: Props) {
     )
 
   return (
-    <Table className={cn(edges.length > 7 && "min-h-[500px]", `border mb-4`)}>
+    <Table className={cn(edges.length >= FULL_SIZE_TABLE_MIN_ITEMS && "min-h-[500px]", `border mb-4`)}>
       <TableHeader>
         <Headers />
       </TableHeader>
