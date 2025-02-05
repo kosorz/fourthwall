@@ -15,18 +15,16 @@ const repository: Repository = {
   name: "test-name",
 }
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () =>
-      Promise.resolve({
-        data: {
-          node: repository,
-        },
-        errors: null,
-      }),
-  } as Response)
-)
+global.fetch = jest.fn().mockReturnValue({
+  ok: true,
+  json: () =>
+    Promise.resolve({
+      data: {
+        node: repository,
+      },
+      errors: null,
+    }),
+})
 
 afterEach(() => {
   jest.clearAllMocks()

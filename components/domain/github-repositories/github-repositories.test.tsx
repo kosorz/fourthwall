@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react"
-import { PageInfo, Repository } from "@/lib/types/github"
+import { Repository } from "@/lib/types/github"
 import { GithubRepositories } from "./github-repositories"
 
 const edges: { node: Repository }[] = Array.from({ length: 3 }, (_, index) => ({
@@ -12,26 +12,6 @@ const edges: { node: Repository }[] = Array.from({ length: 3 }, (_, index) => ({
     name: `test-name-${index + 1}`,
   },
 }))
-
-const pageInfo: PageInfo = {
-  hasNextPage: true,
-  hasPreviousPage: true,
-  startCursor: "start-cursor",
-  endCursor: "end-cursor",
-}
-
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () =>
-      Promise.resolve({
-        data: {
-          search: { edges, pageInfo },
-        },
-        errors: null,
-      }),
-  } as Response)
-)
 
 afterEach(() => {
   jest.clearAllMocks()

@@ -31,18 +31,16 @@ const pageInfo: PageInfo = {
   endCursor: "end-cursor",
 }
 
-global.fetch = jest.fn(() =>
-  Promise.resolve({
-    ok: true,
-    json: () =>
-      Promise.resolve({
-        data: {
-          search: { edges, pageInfo },
-        },
-        errors: null,
-      }),
-  } as Response)
-)
+global.fetch = jest.fn().mockReturnValue({
+  ok: true,
+  json: () =>
+    Promise.resolve({
+      data: {
+        search: { edges, pageInfo },
+      },
+      errors: null,
+    }),
+})
 
 afterEach(() => {
   jest.clearAllMocks()
