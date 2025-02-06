@@ -1,6 +1,6 @@
-import React, { ComponentProps, HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
+import React, { HTMLAttributes, TdHTMLAttributes, ThHTMLAttributes } from "react"
 import { cn } from "@/lib/functions/cn/cn"
-import Link, { LinkProps } from "next/link"
+import Link from "next/link"
 
 const Table = ({ className, ...props }: HTMLAttributes<HTMLTableElement>) => {
   return (

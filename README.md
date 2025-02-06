@@ -15,11 +15,15 @@ I've decided to use authorized way of consuming Github GraphQL server to get rel
 
 You might notice that caching is there but there's no explicit mechanism implemented nor 3rd party solution added to handle this. This is because cache functionality built into fetch API exposed by Next.js was used.
 
-Unfortunately it's not possible to rely on URL and maintain a static rendered status of page. If we wanted to keep the data rendering in the client while still fetch the relevant data via node (to hide our interactions with github API for security reasons) it wouldn't have a significant impact on performance. The phase that costs us time is between user navigating to another page and our node server responding with data (so called latency on the wires between client browser and our node server) - not necessarily rendering of the template with obtained data or server getting the data from github as frequently cache has a HIT status so latency in contact with github is next to nothing.
+The phase that costs us time and causes the visible delay is between user navigating to another page and our node instance responding with data. We could make the github-repositories a client component -> implement caching in the very end user browser -> still use node instance to fetch data to hide the details of the request. Thanks to slots entire route would be static and browsing would be significantly faster as the outbound network calls to node instance would be prevented in the very client. [See live version](https://fourthwall.netlify.app/) (branch: main-client). However it of course comes at a price:
+
+- Route intersection (and possibly many more next.js features) malfunctions as the table now relies on the URL in the client - is not rendered in the server - the content changes while intersected route is used and URL changes
+- The bundle size increases as more data is initially sent to client
+  ...
 
 ## Security
 
-Using server components approach provides an additional layer of security. Contact with github API is done in a way that is not visible for the end user, therefore NEXT_PUBLIC_GITHUB_TOKEN is not surfaced in client browser.
+Using server functions provides an additional layer of security. Contact with github API is done in a way that is not visible for the end user, therefore NEXT_PUBLIC_GITHUB_TOKEN is not surfaced in client browser.
 
 # Limitations
 
@@ -47,6 +51,7 @@ Error (and all activity!) is tracked via Sentry (don't get scared I won't know w
 - dark mode
 - disable sorting buttons on headers when user has put a sort in search "q" as it should take precedence
 - containerization and scaling (if the application would get traction)
+- possible integration with [@tanstack/react-query](https://tanstack.com/query/latest/docs/framework/react/guides/advanced-ssr)
 - while all checks are in passing zones there is always a room for improvement:
   <img width="324" alt="image" src="https://github.com/user-attachments/assets/2bb84773-1565-4a26-83c4-cd572bf0c415" />
   <img width="338" alt="image" src="https://github.com/user-attachments/assets/7b1fbb3c-cf97-45ba-9752-2602858486cf" />
