@@ -9,7 +9,7 @@ import { FULL_SIZE_TABLE_MIN_ITEMS } from "@/lib/constants/constants"
 
 type Props = {
   edges: { node: Repository }[]
-  q: string | string[]
+  q: string | null
 }
 
 export function GithubRepositories({ edges, q }: Props) {

@@ -1,33 +1,51 @@
-import { SearchParams } from "next/dist/server/request/search-params"
-import { Suspense } from "react"
+"use client"
+
+import { cache, useEffect, useState } from "react"
 import { GithubRepositoriesPagination } from "@/components/domain/github-repositories-pagination/gitthub-repositories-pagination"
 import { getRepos } from "@/data-access/github"
-import GithubRepositoriesAsync, {
-  GithubRepositories,
-} from "@/components/domain/github-repositories/github-repositories"
-import { GithubRepositoriesTableSkeleton } from "@/components/domain/github-repositories/components/skeleton/skeleton"
+import { GithubRepositories } from "@/components/domain/github-repositories/github-repositories"
+import { useSearchParams } from "next/navigation"
+import { Repository } from "@/lib/types/github"
 
-type Props = { searchParams: Promise<SearchParams> }
+export function ResultsScreen() {
+  const searchParams = useSearchParams()
+  const [edges, setEdges] = useState<{ node: Repository }[]>([])
+  const [pageInfo, setPageInfo] = useState({
+    startCursor: "",
+    endCursor: "",
+    hasNextPage: false,
+    hasPreviousPage: false,
+  })
 
-export async function ResultsScreen({ searchParams }: Props) {
-  const { q, startCursor, endCursor, direction, sort } = await searchParams
+  const startCursor = searchParams.get("startCursor")
+  const endCursor = searchParams.get("endCursor")
+  const q = searchParams.get("q")
 
-  if (!q) return <></>
+  const fetchRepos = cache(
+    async () =>
+      await getRepos({
+        startCursor,
+        endCursor,
+        q,
+        direction: searchParams.get("direction"),
+        sort: searchParams.get("sort"),
+      }).then((res) => {
+        setEdges(res.search.edges)
+        setPageInfo(res.search.pageInfo)
+      })
+  )
 
-  const {
-    search: { edges, pageInfo },
-  } = await getRepos({ startCursor, endCursor, direction, q, sort })
+  useEffect(() => {
+    if (!q) return
 
-  // to have streaming via suspense we need to render async component
-  // to be able to render it in jest test we need synchronous component
-  // those are childhood problem of server components in conjunction with JEST
-  const Table = process.env.NODE_ENV !== "test" ? GithubRepositoriesAsync : GithubRepositories
+    fetchRepos()
+  }, [q, startCursor, endCursor])
+
+  if (edges.length === 0 && q) return <></>
 
   return (
     <>
-      <Suspense key={`${startCursor}${endCursor}`} fallback={<GithubRepositoriesTableSkeleton />}>
-        <Table q={q} edges={edges} />
-      </Suspense>
+      <GithubRepositories q={q} edges={edges} />
       <GithubRepositoriesPagination {...pageInfo} />
     </>
   )

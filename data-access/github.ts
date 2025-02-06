@@ -15,11 +15,11 @@ export async function getRepos({
   sort,
   q,
 }: {
-  startCursor?: string | string[]
-  endCursor?: string | string[]
-  q?: string | string[]
-  sort?: string | string[]
-  direction?: string | string[]
+  startCursor: string | null
+  endCursor: string | null
+  q: string | null
+  sort: string | null
+  direction: string | null
 }): Promise<RepositorySearchResponse> {
   if (!q) {
     throw Error("Search phrase is required.")

@@ -11,6 +11,8 @@ import {
   PaginationPrevious,
 } from "@/components/ui/pagination/pagination"
 import { useRouter } from "nextjs-toploader/app"
+import { useEffect } from "react"
+import { getRepos } from "@/data-access/github"
 
 type Props = PageInfo
 
