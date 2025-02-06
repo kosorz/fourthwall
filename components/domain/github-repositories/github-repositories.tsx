@@ -12,7 +12,7 @@ type Props = {
   q: string | null
 }
 
-export function GithubRepositories({ edges, q }: Props) {
+export default function GithubRepositories({ edges, q }: Props) {
   if (!q) return
 
   if (edges.length === 0)
@@ -54,8 +54,4 @@ export function GithubRepositories({ edges, q }: Props) {
       <TableCaption>A list of matching repositories.</TableCaption>
     </Table>
   )
-}
-
-export default async function GithubRepositoriesAsync(props: Props) {
-  return GithubRepositories(props)
 }
