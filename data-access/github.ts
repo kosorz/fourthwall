@@ -59,9 +59,6 @@ export async function getRepos({
     method: "POST",
     headers,
     body: JSON.stringify(requestBody),
-    next: {
-      revalidate: 60,
-    },
   })
 
   if (!response.ok) {
@@ -108,9 +105,6 @@ export async function getRepo({ id }: { id?: string }): Promise<Repository> {
     method: "POST",
     headers,
     body: JSON.stringify(requestBody),
-    next: {
-      revalidate: 60,
-    },
   })
 
   if (!response.ok) {

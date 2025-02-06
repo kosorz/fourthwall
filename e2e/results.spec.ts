@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test"
 
 test.describe("GitHub Repository Table - Fourthwall", () => {
   test("verifies the table content and navigates to the next page", async ({ page }) => {
-    await page.goto("https://fourthwall-seven.vercel.app/?q=github")
+    await page.goto("https://fourthwall.netlify.app/?q=github")
 
     const fourthwallLogo = page.locator("img[alt='Fourthwall logo']")
     const githubLogo = page.locator("img[alt='GitHub logo']")

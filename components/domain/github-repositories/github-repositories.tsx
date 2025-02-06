@@ -12,7 +12,7 @@ type Props = {
   q: string | null
 }
 
-export default function GithubRepositories({ edges, q }: Props) {
+export function GithubRepositories({ edges, q }: Props) {
   if (!q) return
 
   if (edges.length === 0)

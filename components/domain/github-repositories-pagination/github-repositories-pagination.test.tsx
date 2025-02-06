@@ -1,7 +1,7 @@
 import React from "react"
 import { render, screen, fireEvent } from "@testing-library/react"
 
-import { GithubRepositoriesPagination } from "./gitthub-repositories-pagination"
+import { GithubRepositoriesPagination } from "./github-repositories-pagination"
 import { useSearchParams } from "next/navigation"
 import { useRouter } from "nextjs-toploader/app"
 

@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react"
 import { Repository } from "@/lib/types/github"
-import GithubRepositories from "./github-repositories"
+import { GithubRepositories } from "./github-repositories"
 
 const edges: { node: Repository }[] = Array.from({ length: 3 }, (_, index) => ({
   node: {
