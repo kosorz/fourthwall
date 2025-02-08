@@ -1,3 +1,3 @@
-import { SearchScreen } from "@/screens/search/search"
+import { SearchScreen } from "@/src/screens/search/search"
 
 export default SearchScreen

@@ -5,6 +5,8 @@
 According to react [documentation](https://react.dev/learn/start-a-new-react-project#nextjs-app-router)
 for production grade application (the way this application should be treated - along the task description) one of the frameworks should be used. I've selected next.js with app router.
 
+Additionally I was trying to follow S.O.L.I.D principles.
+
 ## Styling
 
 I’ve decided to use Tailwind CSS and shadcn/ui primarily to explore and experiment with it, Tailwind provides a great platform to make appealing interfaces fast. While shadcn/ui is a minimalistic components bundle that are highly customisable and "owned" as once invoked they become part of the project not part of library. These components are mostly dependency free. Its a different perspective after using styled components in conjunction with material-ui for few years.

@@ -1,3 +1,3 @@
-import { DetailsScreen } from "@/screens/details/details"
+import { DetailsScreen } from "@/src/screens/details/details"
 
 export default DetailsScreen

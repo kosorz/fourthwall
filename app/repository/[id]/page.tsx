@@ -1,3 +1,3 @@
-import { RepositoryScreen } from "@/screens/repository/repository"
+import { RepositoryScreen } from "@/src/screens/repository/repository"
 
 export default RepositoryScreen

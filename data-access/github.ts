@@ -1,7 +1,9 @@
 "use server"
 
-import { Repository, RepositorySearchResponse } from "@/lib/types/github"
-import { BrowseDirection } from "../lib/types/pagination"
+import { Repository, RepositorySearchResponse } from "@/src/lib/types/github"
+import { SearchParams } from "next/dist/server/request/search-params"
+import { REPOSITORIES_PLACEHOLDER_DATA } from "@/src/lib/constants/constants"
+import { BrowseDirection } from "@/src/lib/types/pagination"
 
 const headers = {
   "content-type": "application/json",
@@ -14,15 +16,9 @@ export async function getRepos({
   direction = BrowseDirection.Backward,
   sort,
   q,
-}: {
-  startCursor?: string | string[]
-  endCursor?: string | string[]
-  q?: string | string[]
-  sort?: string | string[]
-  direction?: string | string[]
-}): Promise<RepositorySearchResponse> {
+}: SearchParams): Promise<RepositorySearchResponse> {
   if (!q) {
-    throw Error("Search phrase is required.")
+    return REPOSITORIES_PLACEHOLDER_DATA
   }
 
   const requestBody = {
@@ -77,7 +73,7 @@ export async function getRepos({
   return data
 }
 
-export async function getRepo({ id }: { id?: string }): Promise<Repository> {
+export async function getRepo({ id }: SearchParams): Promise<Repository> {
   if (!id) {
     throw Error("Repository ID is required.")
   }

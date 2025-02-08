@@ -1,3 +1,3 @@
-import { ResultsScreen } from "@/screens/results/results"
+import { ResultsScreen } from "@/src/screens/results/results"
 
 export default ResultsScreen

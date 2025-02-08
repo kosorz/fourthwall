@@ -1,5 +1,5 @@
-import { Skeleton } from "@/components/ui/skeleton/skeleton"
-import { GithubRepositoriesTableSkeleton } from "../../components/domain/github-repositories/components/skeleton/skeleton"
+import { GithubRepositoriesTableSkeleton } from "@/src/components/domain/github-repositories/components/skeleton/skeleton"
+import { Skeleton } from "@/src/components/ui/skeleton/skeleton"
 
 export default function Loading() {
   return (

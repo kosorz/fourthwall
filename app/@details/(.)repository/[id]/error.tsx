@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button/button"
+import { Button } from "@/src/components/ui/button/button"
 import {
   Dialog,
   DialogContent,
@@ -8,7 +8,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog/dialog"
+} from "@/src/components/ui/dialog/dialog"
 
 type Props = {
   reset: () => void

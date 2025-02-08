@@ -1,3 +1,3 @@
-import { DefaultScreen } from "@/screens/default"
+import { DefaultScreen } from "@/src/screens/default"
 
 export default DefaultScreen
